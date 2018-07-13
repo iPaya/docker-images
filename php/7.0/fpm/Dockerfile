@@ -16,6 +16,7 @@ RUN set -x \
 # 配置
 RUN set -x \
     && sed -i -e "s|;daemonize\s*=\s*yes|daemonize = no|g" /etc/php/7.0/php-fpm.conf \
+    && sed -i -e "s|;clear_env\s*=\s*no|clear_env = no|g" /etc/php/7.0/php-fpm.d/www.conf \
     && sed -i -e "s|listen\s*=\s*/run/php-fpm7.0/php-fpm.sock|listen = /run/php-fpm7.0/php-fpm.sock\nlisten = 9000\n|g" /etc/php/7.0/php-fpm.d/www.conf \
     && sed -i "s|memory_limit =.*|memory_limit = ${PHP_MEMORY_LIMIT}|" /etc/php/7.0/php.ini \
     && sed -i "s|upload_max_filesize =.*|upload_max_filesize = ${PHP_UPLOAD_MAX_FILESIZE}|" /etc/php/7.0/php.ini \
